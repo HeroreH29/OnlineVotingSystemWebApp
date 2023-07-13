@@ -1,0 +1,50 @@
+﻿@model HasVotedViewModel
+@{
+	ViewData["Title"] = "Voters Log";
+	Layout = "~/Views/Shared/_HasVotedLayout.cshtml";
+}
+
+@section LeftRightSection{
+	@foreach(var item in Model.hasVoted){
+	<tr>
+		<td>
+			<h5>@Html.DisplayFor(model => item.voterUID)</h5>
+		</td>
+		<td>
+			<h5>Candidates Positions</h5>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p style="font-weight:normal;"><b>First Name</b> : @Html.DisplayFor(modelItem => item.voterFirstName)</p>
+			<p style="font-weight:normal;"><b>Last Name</b> : @Html.DisplayFor(modelItem => item.voterLastName)</p>
+			<p style="font-weight:normal;"><b>College</b> : @Html.DisplayFor(modelItem => item.voterCollege)</p>
+			<p style="font-weight:normal;"><b>Section</b> : @Html.DisplayFor(modelItem => item.voterYearSection)</p>
+		</td>
+
+		<td>
+			<table class="table table-borderless">
+				<tr>
+								
+				<td>
+					<p style="font-weight:normal;"><b>Chairperson</b> : @Html.DisplayFor(modelItem => item.chairpersonFullName)</p>
+					<p style="font-weight:normal;"><b>Vice Chairperson</b> : @Html.DisplayFor(modelItem => item.viceChairpersonFullName)</p>
+					<p style="font-weight:normal;"><b>Secretary</b> : @Html.DisplayFor(modelItem => item.secretaryFullName)</p>
+					<p style="font-weight:normal;"><b>Treasurer</b> : @Html.DisplayFor(modelItem => item.treasurerFullName)</p>
+					<p style="font-weight:normal;"><b>Auditor</b> : @Html.DisplayFor(modelItem => item.auditorFullName)</p>	
+				</td>
+				<td>
+					<p style="font-weight:normal;"><b>4th Year Representative</b> : @Html.DisplayFor(modelItem => item.fourthYearRepFullName)</p>
+					<p style="font-weight:normal;"><b>3rd Year Representative</b> : @Html.DisplayFor(modelItem => item.thirdYearRepFullName)</p>
+					<p style="font-weight:normal;"><b>2nd Year Representative</b> : @Html.DisplayFor(modelItem => item.secondYearRepFullName)</p>
+					<p style="font-weight:normal;"><b>1st Year Representative</b> : @Html.DisplayFor(modelItem => item.firstYearRepFullName)</p>
+				</td>
+								
+				</tr>
+			</table>
+		</td>
+	</tr>
+	}
+	}
+
+

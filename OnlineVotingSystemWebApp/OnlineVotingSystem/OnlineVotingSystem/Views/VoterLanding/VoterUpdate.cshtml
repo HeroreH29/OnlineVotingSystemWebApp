@@ -1,0 +1,135 @@
+﻿@model VoterUpdateModel
+@{
+    ViewData["Title"] = "Signup Page";
+}
+@section Styles{
+    <style>
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+  }
+  .card-registration .select-arrow {
+    top: 13px;
+  }
+
+  body {
+    /* fallback for old browsers */
+    background: #a1c4fd;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1))
+  }
+
+  .bg-indigo {
+    background-color: #4835d4;
+  }
+  </style>
+}
+
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body" style="padding: 0;">
+            <div class="row">
+                <table>
+                    <tr>
+                        <td style = "width:50%">
+                            <form asp-action="VoterStudentUpdate">
+                              <div>
+                                <div class="p-5" style="color:#001bf4">
+                  
+                                 <h3 class="fw-normal mb-5" style="color: #4835d4;">Change Student Infomation</h3>
+                                  <div class="row">
+                                      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        
+                                      <div class="form-group">
+                                      <div class="mb-4 pb-2">
+                                      <div class="form-floating">
+                                          @Html.EditorFor(model => model.voterFirstName, new { htmlAttributes = new { @class = "form-control", @placeholder="First name", @id="floatingInput" } })
+                                          @Html.ValidationMessageFor(model => model.voterFirstName, "", new { @class = "text-danger" })
+                                          <label class="form-label" for="floatingInput">First Name</label>
+                                      </div>
+                                      </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                      <div class="mb-4 pb-2">
+                                      <div class="form-floating">
+                                          @Html.EditorFor(model => model.voterLastName, new { htmlAttributes = new { @class = "form-control", @placeholder="Last name", @id="floatingInput" } })
+                                          @Html.ValidationMessageFor(model => model.voterLastName, "", new { @class = "text-danger" })
+                                          <label class="form-label" for="floatingInput">Last Name</label>
+                                      </div>
+                                      </div>
+                                      </div>
+                                      <div class="form-group">
+                                      <div class="mb-4 pb-2">
+                                      <div class="form-floating">
+                                          @Html.EditorFor(model => model.voterCollege, new { htmlAttributes = new { @class = "form-control", @placeholder="College", @id="floatingInput" } })
+                                          @Html.ValidationMessageFor(model => model.voterCollege, "", new { @class = "text-danger" })
+                                          <label class="form-label" for="floatingInput">College</label>
+                                      </div>
+                                      </div>
+                                      </div>
+                                  </div>
+
+                                      <div class="form-group">
+                                      <div class="mb-4 pb-2">
+                                      <div class="form-floating">
+                                          @Html.EditorFor(model => model.voterYearSection, new { htmlAttributes = new { @class = "form-control", @placeholder="Year & Section", @id="floatingInput" } })
+                                          @Html.ValidationMessageFor(model => model.voterYearSection, "", new { @class = "text-danger" })
+                                          <label class="form-label" for="floatingInput">Year and Section</label>
+                                      </div>
+                                      </div>
+                                      </div>
+                   
+                                  <!-- submit button -->
+                                  <button type="submit" class="btn btn-outline-primary btn-lg"style="width:30%;">Register</button>  
+                                </div>
+                              </div>
+                           </form>
+                        </td>
+                        <td class="bg-indigo" style="color:#001bf4">
+                          <!-- Login information -->
+                          <form asp-action="ChangePassword">
+                          <div class="align-top">
+                            <div class="p-5 align-items-baseline">
+                              <h3 class="fw-normal mb-5 text-white">Reset Password</h3>
+              
+                              <div class="form-group">
+                              <div class="mb-4 pb-2">
+                              <div class="form-floating">
+                                  @Html.EditorFor(model => model.voterPassword, new { htmlAttributes = new { @class="form-control", @id="floatingPassword", @placeholder="Password" } })
+                                  @Html.ValidationMessageFor(model => model.voterPassword, "", new { @class = "text-danger" })
+                                  <label class="form-label" for="floatingInput">Password</label>
+                              </div>
+                              </div>
+                              </div>
+                              <div class="form-group">
+                              <div class="mb-4 pb-2">
+                              <div class="form-floating">
+                                  @Html.EditorFor(model => model.voterReTypePass, new { htmlAttributes = new { @class="form-control", @id="floatingPassword", @placeholder="Password" } })
+                                  @Html.ValidationMessageFor(model => model.voterReTypePass, "", new { @class = "text-danger" })
+                                  <label class="form-label" for="floatingInput">Re-type Password</label>
+                              </div>
+                              </div>
+                              </div>
+                              <button type="submit" class="btn btn-outline-light btn-lg mb-5"style="width:40%;">Change Password</button>
+                              <p class="mt-5 mb-5 text-white fs-5">Click <a asp-action="VoterProfile" asp-controller="VoterLanding" class="text-light">here</a> to return</p>
+                            </div>
+                          </div>
+                          </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

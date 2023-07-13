@@ -1,0 +1,59 @@
+﻿@model DateTimePickerModel
+@{
+	ViewData["Title"] = "Date Picker";
+}
+@section Styles{
+	<style>
+	  body{
+		  background: #84fab0;
+  
+		/* Chrome 10-25, Safari 5.1-6 */
+		background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+  
+		/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+	  }
+	</style>
+}
+
+<div class="mask d-flex align-items-center h-100" style="padding:2% 0">
+	<div class="container h-100 mt-5">
+	  <div class="row d-flex justify-content-center align-items-center h-100">
+		  <div class="card pb-3 mt-5" style="border-radius: 15px;width:50%">
+			  <table>
+				  <thead>
+					  <tr>
+						  <td>
+							  <p><a asp-action="Index" asp-controller="AdminLanding" class="btn btn-outline-dark btn-md float-end" style="margin-top:20px">Return</a>
+								  <h5>Election Date Picker</h5>
+								  Please select the range of the election maderfacker! 
+							  </p>
+						  </td>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <form asp-action="getDateTime" asp-controller="AdminLanding">
+					  <tr>
+						  <td>
+								<div class="form-group">
+								<div class="mb-2 pb-2">
+								<div class="form-floating">
+									@Html.EditorFor(model => model.ToDatePicker, new { htmlAttributes = new { @class = "form-control", @placeholder="mm/dd/yy 0:00", @id="floatingInput", @required="required", @type="datetime-local", @name="dateTime", @method="post" } })
+									@Html.ValidationMessageFor(model => model.ToDatePicker, "", new { @class = "text-danger" })
+									<label class="form-label" for="floatingInput">From</label>
+								</div>
+								</div>
+								</div>
+						  </td>
+					  </tr>
+					  <tr>
+						  <td><button type="submit" class="btn btn-success btn-lg">Submit</button></td>
+					  </tr>
+					  </form>
+				  </tbody>
+			  </table>
+			
+		  </div>
+	  </div>
+	</div>
+  </div>

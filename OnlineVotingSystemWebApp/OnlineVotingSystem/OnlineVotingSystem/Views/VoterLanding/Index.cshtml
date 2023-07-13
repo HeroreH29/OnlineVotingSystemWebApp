@@ -1,0 +1,105 @@
+﻿@model ViewModel
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_VoterLandingLayout.cshtml";
+
+}
+@section LeftSection{
+	<ul class="nav nav-pills flex-column mb-auto">
+			<li class="nav-item">
+				<a asp-action="Index" class="nav-link active" aria-current="page">
+				Chairperson
+				</a>
+			</li>
+			<li class="nav-item">
+				<a asp-action="ViceChairperson" class="nav-link text-white">
+				Vice Chairperson
+				</a>
+			</li>
+			<li class="nav-item">
+				<a asp-action="Secretary" class="nav-link text-white">
+				Secretary
+				</a>
+			</li>
+			<li class="nav-item">
+				<a asp-action="Treasurer" class="nav-link text-white">
+				Treasurer
+				</a>
+			</li>
+			<li class="nav-item">
+				<a asp-action="Auditor" class="nav-link text-white">
+				Auditor
+				</a>
+			</li>
+			<li class="nav-item">
+				<a asp-action="FourthYearRep" class="nav-link text-white">
+				4th Year Representative
+				</a>
+			</li>
+			<li class="nav-item">
+				<a asp-action="ThirdYearRep" class="nav-link text-white">
+				3rd Year Representative
+				</a>
+			</li>
+			<li class="nav-item">
+				<a asp-action="SecondYearRep" class="nav-link text-white">
+				2nd Year Representative
+				</a>
+			</li>
+			<li class="nav-item">
+				<a asp-action="FirstYearRep" class="nav-link text-white">
+				1st Year Representative
+				</a>
+			</li>
+			</ul>
+}
+@{
+
+			
+			if(Model.checkVote == true){
+				<tr><td>
+				<div class="text-center mx-auto">
+				<h3>You already voted for this position!</h3>
+				<p>Please proceed to another candidate position to vote :)</p>
+				</div>
+				</td></tr>
+			}
+			else{
+				if(Model.Candidates != null)
+				{									
+					foreach (var item in Model.Candidates) {		
+					<tr>
+						<td>
+							<img src="@Url.Content(ViewBag.Chairperson)" class="rounded-circle shadow-4" style="width: 100px;" alt="Avatar"/>
+						</td>
+			
+						<td>
+							<h5>@Html.DisplayFor(modelItem => item.candidateFullName) - "@Html.DisplayFor(modelItem => item.candidateYearSection)"</h5>
+							<p style="font-weight:normal; font-size:small;">Position: "@Html.DisplayFor(modelItem => item.candidatePosition)"</p>
+						
+						
+
+							<p style="font-weight:normal; font-size:small;">Background: "@Html.DisplayFor(modelItem => item.candidateBackground)"</p>
+							<p style="font-weight:normal; font-size:small;">Achievements: "@Html.DisplayFor(modelItem => item.candidateAchievements)"</p>
+							<p style="font-weight:normal; font-size:small;">Background: "@Html.DisplayFor(modelItem => item.candidatePersonalQualities)"</p>
+						</td>
+
+						<td>
+						<a asp-action="voteChoice" asp-route-personId="@item.candidateFullName" class="btn btn-outline-primary">Vote</a>
+						</td>            
+						</tr>
+						//index++;
+					}
+				}
+				else
+				{
+					<tr><td>
+					<div class="text-center mx-auto">
+					<h3>There are no entries for this position :(</h3>
+					<p>Please wait for a candidate to show up.</p>
+					</div>
+					</td></tr>
+				}
+			}
+			
+		}

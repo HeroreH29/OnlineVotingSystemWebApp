@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - OnlineVotingSystem</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<script src="https://kit.fontawesome.com/2dd016873a.js" crossorigin="anonymous"></script>
+	@RenderSection("Styles", required: false)
+</head>
+<body>
+	<!--NAVIGATION BAR START SKRRT PANG PANG STICKY ICKY GOOD KUSH-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div class="container-fluid" style="padding:5px;">
+		<span class="navbar-brand mb-0 h1" style="margin-left:20px;">Voter Logs</span>
+		<div class="d-flex me-5 pe-5" id="navbarNavDropdown"> 
+			<ul class="navbar-nav">
+				<li class="nav-item ms-2">
+					<button class="btn btn-light" aria-current="page" style="width:110%;" type="button">Manage Candidates</button>
+				</li>
+				<li class="nav-item ms-2">
+					<a asp-action="Index" asp-controller="AdminLanding" class="btn btn-outline-light">Return</a>
+				</li>
+				<li class="nav-item ms-2">
+					<form asp-action="goBacktoIndex">
+						<button class="btn btn-outline-light" style="width:120%;" type="submit">Log out</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<table class="table table-bordered my-md-3">
+@{ 
+	if(Model != null)
+			{
+				<table class="table table-bordered">
+					@RenderSection("LeftSection")
+				</table>
+			}
+			else
+			{
+				<tr>
+					<td>
+						<div class="text-center mx-auto">
+							<h2>There are no voters who are currently registered or voter who hasn't voted yet.</h2>
+							<h5>Please wait for a voter to register...</h5>
+						</div>	
+					</td>
+				</tr>
+			}
+}
+</table>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

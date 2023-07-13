@@ -1,0 +1,70 @@
+﻿@model CandiLandingModel
+@{
+    ViewData["Title"] = "Candidate";
+    var email = TempData["email"];
+}
+<div class="container py-4 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card">
+          <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+              <img src="@Url.Content(ViewBag.CandiImage)" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+            </div>
+            
+            <div class="ms-3" style="margin-top: 130px;">
+              <h5>@Html.DisplayFor(modelItem => modelItem.candidateFullName)</h5>
+              <p>@Html.DisplayFor(modelItem => modelItem.candidateYearSection)</p>
+            </div>
+          </div>
+          
+          <div class="card-body p-4 mt-5 text-black">
+            <div class="mb-5">
+              <p class="lead fw-normal mb-1">About</p>
+              <div class="p-4" style="background-color: #f8f9fa;">
+              <table class="table table-borderless">
+                  <tr>
+                      <td>
+                        <p class="font-italic mb-1">Running for: </p>
+                        <p class="font-italic mb-1">Achievements Acquired: </p>
+                        <p class="font-italic mb-1">Personal Qualities: </p>
+                        <p class="font-italic mb-1">Candidacy Background: </p>
+                        <p class="font-italic mb-0">Registration Status: </p></td>
+                      <td>
+                      <p class="font-italic mb-1"><b>@Html.DisplayFor(modelItem => modelItem.candidatePosition)</b></p>
+                      <p class="font-italic mb-1"><b>@Html.DisplayFor(modelItem => modelItem.candidateAchievements)</b></p>
+                      <p class="font-italic mb-1"><b>@Html.DisplayFor(modelItem => modelItem.candidatePersonalQualities)</b></p>
+                      <p class="font-italic mb-1"><b>@Html.DisplayFor(modelItem => modelItem.candidateBackground)</b></p>
+                      @{ if (Model.registrationStatus.Equals("Pending"))
+                      {
+                          <p class="font-italic mb-1" style="color:blue"><b>@Html.DisplayFor(modelItem => modelItem.registrationStatus)</b></p>
+                      }
+                      else if (Model.registrationStatus.Equals("Accepted"))
+                      {
+                          <p class="font-italic mb-1" style="color:green"><b>@Html.DisplayFor(modelItem => modelItem.registrationStatus)</b></p>
+                      }
+                      else 
+                      {
+                          <p class="font-italic mb-1" style="color:red"><b>@Html.DisplayFor(modelItem => modelItem.registrationStatus)</b></p>
+                      }
+                      
+                      }
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <form asp-action="goBacktoIndex">
+                              <button class="btn btn-danger" type="submit">Log out</button>
+                          </form>
+                      </td>
+                  </tr>
+              </table>
+                
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

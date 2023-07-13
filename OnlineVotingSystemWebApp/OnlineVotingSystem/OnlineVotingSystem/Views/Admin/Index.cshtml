@@ -1,0 +1,92 @@
+﻿@model OnlineVotingSystem.Models.AdminModel;
+@{
+	ViewData["Title"] = "Admin Login";
+}
+@section Styles{
+	<style>
+	body {  
+		font-family: "Poppins", sans-serif;
+		font-weight: 300;
+		background: #6a11cb;
+		/* Chrome 10-25, Safari 5.1-6 */
+		background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+  
+		/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+	}
+
+	.height {
+		height: 100vh
+	}
+
+	.card {
+		border: none;
+		padding: 20px;
+		background-color: #1c1e21;
+		color: #fff
+	}
+
+	.form-input {
+		position: relative;
+		margin-bottom: 10px;
+		margin-top: 10px
+	}
+
+	.form-input i {
+		position: absolute;
+		font-size: 18px;
+		top: 15px;
+		left: 10px
+	}
+
+	.form-control {
+		height: 50px;
+		background-color: #1c1e21;
+		text-indent: 24px;
+		font-size: 15px
+	}
+
+	.form-control:focus {
+		background-color: #25272a;
+		box-shadow: none;
+		color: #fff;
+		border-color: #4f63e7
+	}
+
+	.signup {
+		height: 50px;
+		font-size: 14px
+	}
+  </style>
+}
+<div class="container mb-5">
+	<div class="row d-flex align-items-center justify-content-center">
+		<div class="col-md-6 mt-5">
+			<div class="card px-5 py-5 mt-5"> 
+				<h1 class="mt-1">Login as Admin</h1>
+				
+				<p style="margin-top:10px;"><br> Please login the account given by the admin of the University. If you do not have the account yet, please contact the University's administrator for the account details.</p>
+				
+				<form asp-action="index">
+				<div class="form-input text-white"> 
+					<i class="fa fa-envelope"></i> 
+						@Html.EditorFor(model => model.AdminEmail, new { htmlAttributes = new { @class = "form-control", @placeholder="Email", @id="floatingInput", @data_val="true", @required="required", @type="email" } })
+						@Html.ValidationMessageFor(model => model.AdminEmail, "", new { @class = "text-danger" }) 
+				</div>
+
+				<div class="form-input text-white"> 
+					<i class="fa fa-lock"></i> 
+						@Html.EditorFor(model => model.AdminPassword, new { htmlAttributes = new { @class = "form-control", @placeholder="Password", @id="floatingInput", @data_val="true", @required="required", @type="password" } })
+						@Html.ValidationMessageFor(model => model.AdminEmail, "", new { @class = "text-danger" }) 
+				</div>
+
+				<button class="btn btn-primary mt-4 signup">Login as Administrator</button>
+				</form>
+				<div class="text-center mt-4"> 
+					<span>Go back to Main page.</span> <a asp-controller="Home" asp-action="Index" class="text-decoration-none">Click Here</a> 
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

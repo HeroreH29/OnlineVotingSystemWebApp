@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Signup Page";
+}
+@section Styles{
+    <style>
+        .gradient-custom-3 {
+        /* fallback for old browsers */
+        background: #84fab0;
+  
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+  
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+      }
+      body{
+          background: #84fab0;
+  
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+  
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+      }
+    </style>
+}
+
+<div class="mask d-flex align-items-center h-100" style="padding:2% 0">
+    <div class="container h-100 mt-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="card pb-3 mt-5" style="border-radius: 15px;width:50%">
+              <table>
+                  <thead>
+                      <tr>
+                          <td>
+                              <p><a asp-action="Index" asp-controller="Home" class="btn btn-outline-dark btn-md float-end" style="margin-top:20px">Return</a>
+                                  <h5>Profile Picture</h5>
+                                  Please upload your desired picture 
+                              </p>
+                          </td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>
+                            <form asp-controller="Upload" asp-action="UploadImage" enctype="multipart/form-data" method="post">
+                                 <div class="input-group mb-2">
+                                     <input type="file" class="form-control" name="file" required>
+                                     <button type="submit" class="btn btn-outline-secondary">Upload</button>
+                                 </div>
+                            </form>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+            
+          </div>
+      </div>
+    </div>
+  </div>

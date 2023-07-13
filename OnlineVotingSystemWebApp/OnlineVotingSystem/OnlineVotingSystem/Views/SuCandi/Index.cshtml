@@ -1,0 +1,174 @@
+﻿@model OnlineVotingSystem.Models.ListModel
+ 
+@{
+    ViewData["Title"] = "Signup Page";
+}
+@section Styles{
+    <style>
+        .gradient-custom-3 {
+        /* fallback for old browsers */
+        background: #84fab0;
+  
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+  
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+      }
+      .gradient-custom-4 {
+        /* fallback for old browsers */
+        
+      }
+      body{
+          background: #84fab0;
+  
+          /* Chrome 10-25, Safari 5.1-6 */
+          background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+  
+          /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+      }
+    </style>
+}
+
+<div class="mask d-flex align-items-center h-100" style="padding:2% 0">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          <div class="">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-4">
+              
+                <table class="table table-borderless">
+                    <form asp-action="Index">
+                    <tr>
+                        <td  style="border-right: 1px solid gray;padding-right:1%;">
+                        <h3 class="mb-3">Create an account</h3>
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="position-relative">
+                            </div>
+                            </div>
+                            
+                                
+                        <div>
+                            <p>Students may run as candidates for the following positions:</p>
+                            <p><b>Chairperson, Vice Chairperson, Secretary, Treasurer, Auditor, 4th Year Representative, 3rd Year Representative, 2nd Year Representative, 1st Year Representative</b></p>
+                            <p>Any input that's not included in the positions mentioned above will immediately be <b>rejected</b> by the admins. </p>
+                        </div>
+                            <h3 class="text-center mb-3 mt-3">Profile Picture</h3>
+                        
+                      <!-- Fields -->
+                          <div class="form-group">
+                          <div class="mb-3">
+                          <div class="form-floating">
+                              @Html.EditorFor(model => model.candidatePosition, new { htmlAttributes = new { @class = "form-control", @placeholder="Position", @id="floatingInput",@data_val="true", @required="required"} })
+                              @Html.ValidationMessageFor(model => model.candidatePosition, "", new { @class = "text-danger" })
+                              <label class="form-label" for="floatingInput">Choose your position above Note: Please careuful watch your spelling</label>
+                          </div>
+                          </div>
+                          </div>
+                          <div class="form-group">
+                          <div class="mb-4 pb-2">
+                          <div class="form-floating">
+                              @Html.EditorFor(model => model.candiEmail, new { htmlAttributes = new { @class = "form-control", @placeholder="email@example.com", @id="floatingInput", @data_val="true", @required="required", @type="email"} })
+                              @Html.ValidationMessageFor(model => model.candiEmail, "", new { @class = "text-danger" })
+                              <label class="form-label" for="floatingInput">Email</label>
+                          </div>
+                          </div>
+                          </div>
+                          <div class="form-group">
+                          <div class="mb-4 pb-2">
+                          <div class="form-floating">
+                              @Html.EditorFor(model => model.candiPassword, new { htmlAttributes = new { @class = "form-control", @placeholder="Password", @id="floatingInput", @data_val="true", @required="required", @type="password" } })
+                              @Html.ValidationMessageFor(model => model.candiPassword, "", new { @class = "text-danger" })
+                              <label class="form-label" for="floatingInput">Password</label>
+                          </div>
+                          </div>
+                          </div>
+                          <div class="form-group">
+                          <div class="mb-4 pb-2">
+                          <div class="form-floating">
+                              @Html.EditorFor(model => model.candiReTypePass, new { htmlAttributes = new { @class = "form-control", @placeholder="Password", @id="floatingInput", @data_val="true", @required="required", @type="password" } })
+                              @Html.ValidationMessageFor(model => model.candiReTypePass, "", new { @class = "text-danger" })
+                              <label class="form-label" for="floatingInput">Confirm Password</label>
+                          </div>
+                          </div>
+                          </div>
+                        <div class="form-check d-flex mb-4">
+                            <input required
+                                class="form-check-input me-2"
+                                type="checkbox"
+                                value=""
+                                id="form2Example3cg"
+                            />
+                            <label class="form-check-label" for="form2Example3g">
+                                Information provided is relevant and legitimate.
+                            </label>
+                            </div>
+                            <div class="d-flex justify-content-center text-light">
+                            <button type="submit" name="submitCandiSignup" class="btn btn-info btn-lg" style="width:50%;">Register</button>
+                            </div>
+                        </td>
+                        <td  style="border-left: 1px solid gray; width:50%;padding-left:1%;">
+                        <h3 class="mb-5">Candidate Details</h3>
+                          <div class="form-group">
+                          <div class="mb-4 pb-2">
+                          <div class="form-floating">
+                              @Html.EditorFor(model => model.candidateFullName, new { htmlAttributes = new { @class="form-control", @placeholder="Fullname", @id="floatingPassword", @data_val="true", @required="required" } })
+                              @Html.ValidationMessageFor(model => model.candidateFullName, "", new { @class = "text-danger" })
+                              <label class="form-label" for="floatingInput">Full Name</label>
+                          </div>
+                          </div>
+                          </div>
+                          <div class="form-group">
+                          <div class="mb-4 pb-2">
+                          <div class="form-floating">
+                              @Html.EditorFor(model => model.candidateYearSection, new { htmlAttributes = new { @class="form-control", @placeholder="YearAndSection", @id="floatingPassword", @data_val="true", @required="required" } })
+                              @Html.ValidationMessageFor(model => model.candidateYearSection, "", new { @class = "text-danger" })
+                              <label class="form-label" for="floatingInput">Year and Section</label>
+                          </div>
+                          </div>
+                          </div>
+                          
+                          <div class="form-group">
+                          <div class="mb-4 pb-2">
+                          <div class="form-floating">
+                              @Html.EditorFor(model => model.candidateAchievements, new { htmlAttributes = new { @class="form-control", @placeholder="Achievement", @id="floatingPassword" , @data_val="true", @required="required" } })
+                              @Html.ValidationMessageFor(model => model.candidateAchievements, "", new { @class = "text-danger" })
+                              <label class="form-label" for="floatingInput">Achievements</label>
+                          </div>
+                          </div>
+                          </div>
+                          <div class="form-group">
+                          <div class="mb-4 pb-2">
+                          <div class="form-floating">
+                              @Html.EditorFor(model => model.candidatePersonalQualities, new { htmlAttributes = new { @class="form-control", @placeholder="Qualities", @id="floatingPassword", @data_val="true", @required="required" } })
+                              @Html.ValidationMessageFor(model => model.candidatePersonalQualities, "", new { @class = "text-danger" })
+                              <label class="form-label" for="floatingInput">Qualities</label>
+                          </div>
+                          </div>
+                          </div>
+                          <div class="form-group">
+                          <div class="mb-4 pb-2">
+                          <div class="form-floating">
+                              @Html.EditorFor(model => model.candidateBackground, new { htmlAttributes = new { @class="form-control", @placeholder="Qualities", @id="floatingPassword", @data_val="true", @required="required" } })
+                              @Html.ValidationMessageFor(model => model.candidateBackground, "", new { @class = "text-danger" })
+                              <label class="form-label" for="floatingInput">Background</label>
+                          </div>
+                          </div>
+                          </div>
+                        </td>
+                    </tr>
+                    </form>
+                </table>
+
+                <p class="text-center text-muted">Already have an account? <a asp-action="Index" asp-controller="Home" class="fw-bold text-body"><u>Login here</u></a></p>
+
+              
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - OnlineVotingSystem</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<script src="https://kit.fontawesome.com/2dd016873a.js" crossorigin="anonymous"></script>
+	@RenderSection("Styles", required: false)
+</head>
+<body>
+	<!--NAVIGATION BAR START SKRRT PANG PANG STICKY ICKY GOOD KUSH-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div class="container-fluid" style="padding:5px;">
+		<span class="navbar-brand mb-0 h1" style="margin-left:20px;">UMak Student Election Result</span>
+		<div class="d-flex me-5 pe-5" id="navbarNavDropdown"> 
+			<ul class="navbar-nav">
+				<li class="nav-item ms-2">
+					<a asp-action="Index" asp-controller="Home" class="btn btn-outline-light" style="width:100%">Return to Home</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+	<table class="table table-bordered">  
+		<!--Chairperson-->
+		<tr><td><h4>Chairperson</h4></td></tr>
+		<tr>
+			@RenderSection("ChairpersonResult")
+		</tr>
+		<!--Vice Chairperson-->
+		<tr><td><h4>Vice Chairperson</h4></td></tr>
+		<tr>
+			@RenderSection("ViceChairpersonResult")
+		</tr>
+		<!--Secretary-->
+		<tr><td><h4>Secretary</h4></td></tr>
+		<tr>
+			@RenderSection("SecretaryResult")
+		</tr>
+		<!--Treasurer-->
+		<tr><td><h4>Treasurer</h4></td></tr>
+		<tr>
+			@RenderSection("TreasurerResult")
+		</tr>
+		<!--Auditor-->
+		<tr><td><h4>Auditor</h4></td></tr>
+		<tr>
+			@RenderSection("AuditorResult")
+		</tr>
+		<!--4th Year Representative-->
+		<tr><td><h4>4th Year Representative</h4></td></tr>
+		<tr>
+			@RenderSection("FourthYearResult")
+		</tr>
+		<!--3rd Year Representative-->
+		<tr><td><h4>3rd Year Representative</h4></td></tr>
+		<tr>
+			@RenderSection("ThirdYearResult")
+		</tr>
+		<!--2nd Year Representative-->
+		<tr><td><h4>2nd Year Representative</h4></td></tr>
+		<tr>
+			@RenderSection("SecondYearResult")
+		</tr>
+		<!--1st Year Representative-->
+		<tr><td><h4>1st Year Representative</h4></td></tr>
+		<tr>
+			@RenderSection("FirstYearResult")
+		</tr>
+	</table>
+
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

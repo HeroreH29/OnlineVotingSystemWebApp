@@ -1,0 +1,80 @@
+﻿@model ViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - OnlineVotingSystem</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<script src="https://kit.fontawesome.com/2dd016873a.js" crossorigin="anonymous"></script>
+	@RenderSection("Styles", required: false)
+</head>
+<body>
+	@{
+	ViewData["Title"] = "Index";
+	
+
+}
+<!-- Navigation Bars -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div class="container-fluid" style="padding-top: 10px;">
+	<h5 class="ms-5 ps-5 navbar-brand">UMak Online Voting</h5>
+		<div class="d-flex me-5 pe-5" id="navbarNavDropdown">
+		<ul class="navbar-nav">
+			<li class="nav-item ms-2">
+				<button class="btn btn-light" aria-current="page" style="width: 100%; margin-top:-10px;" type="button">Home</button>
+			</li>
+			<li class="nav-item ms-2">
+				<a asp-action="VoterProfile" asp-controller="VoterLanding" class="btn btn-outline-light" style="width: 100%; margin-top:-10px;">Profile</a>
+			</li>
+			<li class="nav-item ms-2">
+				<form asp-action="goBacktoIndex">
+				<button class="btn btn-outline-light" style="width: 100%; margin-top:-10px;" type="submit">Logout</button>
+				</form>
+			</li>
+		</ul>
+	  </div>
+	</div>
+</nav>
+<!-- SideBar -->
+<table class="table table-borderless m-5" style="width: auto;">
+	<tr>
+		<td style="width: 20%; height:auto;" class="border border-dark p-0 bg-dark">
+		<div class="d-flex flex-column flex-shrink-0 mt-4 text-white bg-dark" style="width: 280px;height:inherit">
+			<div class="justify-content-center text-center">
+				<div>
+					<img
+					src="~/images/umak_logo.png"
+					class="rounded-circle shadow-4"
+					style="width: 150px;"
+					alt="Avatar"/>
+				</div>
+			</div>
+			<hr>
+			@RenderSection("LeftSection")
+			
+			
+		</div>
+		</td>
+		<td class="border border-dark p-0">
+		<ul class="list-group list-group-flush">
+		<form>
+		<table class="table">
+		@RenderBody()
+		
+		</table>
+		</form>
+		</ul>
+		<p ></p>
+		</td>
+	</tr>
+</table>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

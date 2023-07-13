@@ -1,0 +1,540 @@
+﻿@model BlogPieChart
+@{
+	ViewData["Title"] = "Vote Result";
+	Layout = "~/Views/Shared/_ElectionResultLayout.cshtml";
+}
+
+@section ChairpersonResult{
+	<td style="width:50%">
+		<table class="table table-borderless text-center align-items-center justify-content-center">
+			<tr>
+				<td>
+					<img src="@Url.Content(ViewBag.Chairperson)" class="rounded-circle shadow-4 mt-5" style="width: 200px; height:200px" alt="Avatar"/>
+					<h5 class="mt-1">@Html.DisplayFor(modelItem => Model.chairpersonFullName)</h5>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="chairpersondiv" style="width:600px; height:350px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', { 'packages': ['corechart'] });
+			google.charts.setOnLoadCallback(DrawonLoad);
+
+			function DrawonLoad(){
+				$(function () {
+					$.ajax({
+					type:'GET',
+					url: '/ElectionResult/GetChairperson',
+					success: function (chartsdata){
+						var Data = chartsdata.jsonList;
+						var data = new google.visualization.DataTable();
+
+						data.addColumn('string', 'chairpersonFullName');
+						data.addColumn('number', 'voteCount');
+
+						for(var i = 0;i < Data.length; i++){
+							data.addRow([Data[i].chairpersonFullName, Data[i].voteCount]);
+						}
+
+						var chart = new google.visualization.PieChart(document.getElementById('chairpersondiv'));
+						chart.draw(data, {
+							title: "Chairperson",
+							position: "top",
+							fontsize: "14px",
+							is3D: true
+						});
+					},
+					error: function (){
+						alert('Error loading data! Please try again.')
+					}
+				})
+			});
+		}
+		</script>
+	</td>
+	
+}
+@section ViceChairpersonResult{
+	<td>
+		<table class="table table-borderless text-center align-items-center justify-content-center">
+			<tr>
+				<td>
+					<img src="@Url.Content(ViewBag.ViceChairperson)" class="rounded-circle shadow-4 mt-5" style="width: 200px; height:200px" alt="Avatar"/>
+					<h5 class="mt-1">@Html.DisplayFor(modelItem => Model.viceChairpersonFullName)</h5>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="vicechairpersondiv" style="width:600px; height:350px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', { 'packages': ['corechart'] });
+			google.charts.setOnLoadCallback(DrawonLoad);
+
+			function DrawonLoad(){
+				$(function () {
+					$.ajax({
+					type:'GET',
+					url: '/ElectionResult/GetViceChairperson',
+					success: function (chartsdata){
+						var Data = chartsdata.jsonList;
+						var data = new google.visualization.DataTable();
+
+						data.addColumn('string', 'viceChairpersonFullName');
+						data.addColumn('number', 'voteCount');
+
+						for(var i = 0;i < Data.length; i++){
+							data.addRow([Data[i].viceChairpersonFullName, Data[i].voteCount]);
+						}
+
+						var chart = new google.visualization.PieChart(document.getElementById('vicechairpersondiv'));
+						chart.draw(data, {
+							title: "Vice Chairperson",
+							position: "top",
+							fontsize: "14px",
+							is3D: true
+						});
+					},
+					error: function (){
+						alert('Error loading data! Please try again.')
+					}
+				})
+			});
+		}
+		</script>
+	</td>
+}
+@section SecretaryResult{
+	<td>
+		<table class="table table-borderless text-center align-items-center justify-content-center">
+			<tr>
+				<td>
+					<img src="@Url.Content(ViewBag.Secretary)" class="rounded-circle shadow-4 mt-5" style="width: 200px; height:200px" alt="Avatar"/>
+					<h5 class="mt-1">@Html.DisplayFor(modelItem => Model.secretaryFullName)</h5>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="secretarydiv" style="width:600px; height:350px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', { 'packages': ['corechart'] });
+			google.charts.setOnLoadCallback(DrawonLoad);
+
+			function DrawonLoad(){
+				$(function () {
+					$.ajax({
+					type:'GET',
+					url: '/ElectionResult/GetSecretary',
+					success: function (chartsdata){
+						var Data = chartsdata.jsonList;
+						var data = new google.visualization.DataTable();
+
+						data.addColumn('string', 'secretaryFullName');
+						data.addColumn('number', 'voteCount');
+
+						for(var i = 0;i < Data.length; i++){
+							data.addRow([Data[i].secretaryFullName, Data[i].voteCount]);
+						}
+
+						var chart = new google.visualization.PieChart(document.getElementById('secretarydiv'));
+						chart.draw(data, {
+							title: "Secretary",
+							position: "top",
+							fontsize: "14px",
+							is3D: true
+						});
+					},
+					error: function (){
+						alert('Error loading data! Please try again.')
+					}
+				})
+			});
+		}
+		</script>
+	</td>
+}
+@section TreasurerResult{
+	<td>
+		<table class="table table-borderless text-center align-items-center justify-content-center">
+			<tr>
+				<td>
+					<img src="@Url.Content(ViewBag.Treasurer)" class="rounded-circle shadow-4 mt-5" style="width: 200px; height:200px" alt="Avatar"/>
+					<h5 class="mt-1">@Html.DisplayFor(modelItem => Model.treasurerFullName)</h5>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="treasurerdiv" style="width:600px; height:350px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', { 'packages': ['corechart'] });
+			google.charts.setOnLoadCallback(DrawonLoad);
+
+			function DrawonLoad(){
+				$(function () {
+					$.ajax({
+					type:'GET',
+					url: '/ElectionResult/GetTreasurer',
+					success: function (chartsdata){
+						var Data = chartsdata.jsonList;
+						var data = new google.visualization.DataTable();
+
+						data.addColumn('string', 'treasurerFullName');
+						data.addColumn('number', 'voteCount');
+
+						for(var i = 0;i < Data.length; i++){
+							data.addRow([Data[i].treasurerFullName, Data[i].voteCount]);
+						}
+
+						var chart = new google.visualization.PieChart(document.getElementById('treasurerdiv'));
+						chart.draw(data, {
+							title: "Treasurer",
+							position: "top",
+							fontsize: "14px",
+							is3D: true
+						});
+					},
+					error: function (){
+						alert('Error loading data! Please try again.')
+					}
+				})
+			});
+		}
+		</script>
+	</td>
+}
+@section AuditorResult{
+	<td>
+		<table class="table table-borderless text-center align-items-center justify-content-center">
+			<tr>
+				<td>
+					<img src="@Url.Content(ViewBag.Auditor)" class="rounded-circle shadow-4 mt-5" style="width: 200px; height:200px" alt="Avatar"/>
+					<h5 class="mt-1">@Html.DisplayFor(modelItem => Model.auditorFullName)</h5>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="auditordiv" style="width:600px; height:350px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', { 'packages': ['corechart'] });
+			google.charts.setOnLoadCallback(DrawonLoad);
+
+			function DrawonLoad(){
+				$(function () {
+					$.ajax({
+					type:'GET',
+					url: '/ElectionResult/GetAuditor',
+					success: function (chartsdata){
+						var Data = chartsdata.jsonList;
+						var data = new google.visualization.DataTable();
+
+						data.addColumn('string', 'auditorFullName');
+						data.addColumn('number', 'voteCount');
+
+						for(var i = 0;i < Data.length; i++){
+							data.addRow([Data[i].auditorFullName, Data[i].voteCount]);
+						}
+
+						var chart = new google.visualization.PieChart(document.getElementById('auditordiv'));
+						chart.draw(data, {
+							title: "Auditor",
+							position: "top",
+							fontsize: "14px",
+							is3D: true
+						});
+					},
+					error: function (){
+						alert('Error loading data! Please try again.')
+					}
+				})
+			});
+		}
+		</script>
+	</td>
+}
+@section FourthYearResult{
+	<td>
+		<table class="table table-borderless text-center align-items-center justify-content-center">
+			<tr>
+				<td>
+					<img src="@Url.Content(ViewBag.Fourth)" class="rounded-circle shadow-4 mt-5" style="width: 200px; height:200px" alt="Avatar"/>
+					<h5 class="mt-1">@Html.DisplayFor(modelItem => Model.fourthYearFullName)</h5>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="fourthyeardiv" style="width:600px; height:350px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', { 'packages': ['corechart'] });
+			google.charts.setOnLoadCallback(DrawonLoad);
+
+			function DrawonLoad(){
+				$(function () {
+					$.ajax({
+					type:'GET',
+					url: '/ElectionResult/GetFourthYear',
+					success: function (chartsdata){
+						var Data = chartsdata.jsonList;
+						var data = new google.visualization.DataTable();
+
+						data.addColumn('string', 'fourthYearFullName');
+						data.addColumn('number', 'voteCount');
+
+						for(var i = 0;i < Data.length; i++){
+							data.addRow([Data[i].fourthYearFullName, Data[i].voteCount]);
+						}
+
+						var chart = new google.visualization.PieChart(document.getElementById('fourthyeardiv'));
+						chart.draw(data, {
+							title: "4th Year Representative",
+							position: "top",
+							fontsize: "14px",
+							is3D: true
+						});
+					},
+					error: function (){
+						alert('Error loading data! Please try again.')
+					}
+				})
+			});
+		}
+		</script>
+	</td>
+}
+@section ThirdYearResult{
+	<td>
+		<table class="table table-borderless text-center align-items-center justify-content-center">
+			<tr>
+				<td>
+					<img src="@Url.Content(ViewBag.Third)" class="rounded-circle shadow-4 mt-5" style="width: 200px; height:200px" alt="Avatar"/>
+					<h5 class="mt-1">@Html.DisplayFor(modelItem => Model.thirdYearFullName)</h5>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="thirdyeardiv" style="width:600px; height:350px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', { 'packages': ['corechart'] });
+			google.charts.setOnLoadCallback(DrawonLoad);
+
+			function DrawonLoad(){
+				$(function () {
+					$.ajax({
+					type:'GET',
+					url: '/ElectionResult/GetThirdYear',
+					success: function (chartsdata){
+						var Data = chartsdata.jsonList;
+						var data = new google.visualization.DataTable();
+
+						data.addColumn('string', 'thirdYearFullName');
+						data.addColumn('number', 'voteCount');
+
+						for(var i = 0;i < Data.length; i++){
+							data.addRow([Data[i].thirdYearFullName, Data[i].voteCount]);
+						}
+
+						var chart = new google.visualization.PieChart(document.getElementById('thirdyeardiv'));
+						chart.draw(data, {
+							title: "3rd Year Representative",
+							position: "top",
+							fontsize: "14px",
+							is3D: true
+						});
+					},
+					error: function (){
+						alert('Error loading data! Please try again.')
+					}
+				})
+			});
+		}
+		</script>
+	</td>
+}
+@section SecondYearResult{
+	<td>
+		<table class="table table-borderless text-center align-items-center justify-content-center">
+			<tr>
+				<td>
+					<img src="@Url.Content(ViewBag.Second)" class="rounded-circle shadow-4 mt-5" style="width: 200px; height:200px" alt="Avatar"/>
+					<h5 class="mt-1">@Html.DisplayFor(modelItem => Model.secondYearFullName)</h5>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="secondyeardiv" style="width:600px; height:350px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', { 'packages': ['corechart'] });
+			google.charts.setOnLoadCallback(DrawonLoad);
+
+			function DrawonLoad(){
+				$(function () {
+					$.ajax({
+					type:'GET',
+					url: '/ElectionResult/GetSecondYear',
+					success: function (chartsdata){
+						var Data = chartsdata.jsonList;
+						var data = new google.visualization.DataTable();
+
+						data.addColumn('string', 'secondYearFullName');
+						data.addColumn('number', 'voteCount');
+
+						for(var i = 0;i < Data.length; i++){
+							data.addRow([Data[i].secondYearFullName, Data[i].voteCount]);
+						}
+
+						var chart = new google.visualization.PieChart(document.getElementById('secondyeardiv'));
+						chart.draw(data, {
+							title: "2nd Year Representative",
+							position: "top",
+							fontsize: "14px",
+							is3D: true
+						});
+					},
+					error: function (){
+						alert('Error loading data! Please try again.')
+					}
+				})
+			});
+		}
+		</script>
+	</td>
+}
+@section FirstYearResult{
+	<td>
+		<table class="table table-borderless text-center align-items-center justify-content-center">
+			<tr>
+				<td>
+					<img src="@Url.Content(ViewBag.First)" class="rounded-circle shadow-4 mt-5" style="width: 200px; height:200px" alt="Avatar"/>
+					<h5 class="mt-1">@Html.DisplayFor(modelItem => Model.firstYearFullName)</h5>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="firstyeardiv" style="width:600px; height:350px">
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load('current', { 'packages': ['corechart'] });
+			google.charts.setOnLoadCallback(DrawonLoad);
+
+			function DrawonLoad(){
+				$(function () {
+					$.ajax({
+					type:'GET',
+					url: '/ElectionResult/GetFirstYear',
+					success: function (chartsdata){
+						var Data = chartsdata.jsonList;
+						var data = new google.visualization.DataTable();
+
+						data.addColumn('string', 'firstYearFullName');
+						data.addColumn('number', 'voteCount');
+
+						for(var i = 0;i < Data.length; i++){
+							data.addRow([Data[i].firstYearFullName, Data[i].voteCount]);
+						}
+
+						var chart = new google.visualization.PieChart(document.getElementById('firstyeardiv'));
+						chart.draw(data, {
+							title: "1st Year Representative",
+							position: "top",
+							fontsize: "14px",
+							is3D: true
+						});
+					},
+					error: function (){
+						alert('Error loading data! Please try again.')
+					}
+				})
+			});
+		}
+		</script>
+	</td>
+}
+
+	

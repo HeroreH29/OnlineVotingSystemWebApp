@@ -1,0 +1,32 @@
+﻿@model HasNotVotedViewModel
+@{
+	ViewData["Title"] = "Voters Log";
+	Layout = "~/Views/Shared/_HasNotVotedLayout.cshtml";
+}
+@section LeftSection {
+	@foreach(var item in Model.hasNotVoted){
+	
+		<tr>
+			<td>
+				<h5>@Html.DisplayFor(modelItem => item.voterUID)</h5>	
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p style="font-weight:normal;"><b>First Name</b> : @Html.DisplayFor(model => item.voterFirstName)</p>
+				<p style="font-weight:normal;"><b>Last Name</b> : @Html.DisplayFor(model => item.voterLastName)</p>
+				<p style="font-weight:normal;"><b>College</b> : @Html.DisplayFor(model => item.voterCollege)</p>
+				<p style="font-weight:normal;"><b>Section</b> : @Html.DisplayFor(model => item.voterYearSection)</p>					
+			</td>
+			<td>
+				<table class="table table-borderless">
+					<tr>
+						<td>
+							<h4>This section is for viewing purposes of those voters who hasn't voted yet. <br /> If you want to see voters who already voted. Please go to Voters Log(Voted)</h4> 
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	}
+}
